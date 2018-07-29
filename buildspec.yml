@@ -17,5 +17,4 @@ phases:
       - mvn package
 artifacts:
   files:
-    - '**/*'
-  base-directory: 'target/ProjectManagement'
+    - target/projectmanagement-0.0.1-SNAPSHOT.jar
