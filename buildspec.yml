@@ -16,4 +16,4 @@ phases:
       - echo Build completed on `date`
 artifacts:
   files:
-    - projectmanagement-1.0.jar
+    - MyAppBuild/projectmanagement-1.0.jar
