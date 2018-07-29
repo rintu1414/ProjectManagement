@@ -16,4 +16,4 @@ phases:
       - echo Build completed on `date`
 artifacts:
   files:
-    - target/projectmanagement-1.0.jar
+    - projectmanagement-1.0.jar
