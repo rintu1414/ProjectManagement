@@ -1,7 +1,10 @@
 package com.sra.projectmanagement.logic;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
@@ -16,9 +19,19 @@ import java.nio.file.Paths;
 
 public class ProjectManagementDelegate {
 
+    private ResourceLoader resourceLoader;
+
+    @Autowired
+    public ProjectManagementDelegate(ResourceLoader resourceLoader){
+        this.resourceLoader = resourceLoader;
+    }
+
     public String getRiskData() throws IOException, URISyntaxException {
-       URI e =ProjectManagementDelegate.class.getClassLoader().getResource("initialData.json").toURI();
-      String fileContents = new String(Files.readAllBytes(Paths.get(e)));
+       //URI e =ProjectManagementDelegate.class.getClassLoader().getResource("initialData.json").toURI();
+      //String fileContents = new String(Files.readAllBytes(Paths.get(e)));
+        //Resource resource = resourceLoader.getResource("././resources/initialData.json");
+        File file = new ClassPathResource("initialData.json").getFile();
+        String fileContents = new String(Files.readAllBytes(Paths.get(file.getPath())));
         return fileContents;
     }
 }
