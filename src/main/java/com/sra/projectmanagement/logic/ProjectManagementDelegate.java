@@ -17,8 +17,8 @@ import java.nio.file.Paths;
 public class ProjectManagementDelegate {
 
     public String getRiskData() throws IOException, URISyntaxException {
-        URI e =ProjectManagementDelegate.class.getClassLoader().getResource("initialData.json").toURI();
-        String fileContents = new String(Files.readAllBytes(Paths.get(e)));
-        return fileContents;
+       // URI e =ProjectManagementDelegate.class.getClassLoader().getResource("initialData.json").toURI();
+      //  String fileContents = new String(Files.readAllBytes(Paths.get(e)));
+        return "fileContents";
     }
 }
