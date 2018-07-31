@@ -27,9 +27,6 @@ public class ProjectManagementDelegate {
     }
 
     public String getRiskData() throws IOException, URISyntaxException {
-       //URI e =ProjectManagementDelegate.class.getClassLoader().getResource("initialData.json").toURI();
-      //String fileContents = new String(Files.readAllBytes(Paths.get(e)));
-        //Resource resource = resourceLoader.getResource("././resources/initialData.json");
         File file = new ClassPathResource("initialData.json").getFile();
         String fileContents = new String(Files.readAllBytes(Paths.get(file.getPath())));
         return fileContents;
