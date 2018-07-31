@@ -22,7 +22,7 @@ public class ProjectManagementDelegate {
     public String getRiskData() throws IOException, URISyntaxException {
        // File file = new ClassPathResource("static/initialData.json").getFile();
        // String fileContents = new String(Files.readAllBytes(Paths.get(file.getPath())));
-        String fileContents = IOUtils.toString(resourceLoader.getResource("classpath:initialData.json.txt").getInputStream());
+        String fileContents = IOUtils.toString(resourceLoader.getResource("classpath:initialData.json").getInputStream());
         return fileContents;
     }
 }
