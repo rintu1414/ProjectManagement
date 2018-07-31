@@ -1,0 +1,20 @@
+{
+  {
+    'ID': '001',
+    'Name': 'Eurasian Collared-Dove',
+    'Type': 'Dove',
+    'Status': 'Streptopelia'
+  },
+  {
+    'ID': '002',
+    'Name': 'Bald Eagle',
+    'Type': 'Hawk',
+    'Status': 'Haliaeetus leucocephalus'
+  },
+  {
+    'ID': '003',
+    'Name': 'Cooper\'s Hawk',
+    'Type': 'Hawk',
+    'Status': 'Accipiter cooperii'
+  }
+}
