@@ -1,15 +1,13 @@
 package com.sra.projectmanagement.Controller;
 
-import com.sra.projectmanagement.ProjectmanagementApplication;
+
 import com.sra.projectmanagement.logic.ProjectManagementDelegate;
-import com.sra.projectmanagement.logic.RiskRegisterDelegateImpl;
+import com.sra.projectmanagement.logic.RiskRegisterDelegate;
 import com.sra.projectmanagement.model.RiskRegister;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -21,7 +19,7 @@ public class ProjectManagementController {
     ProjectManagementDelegate projectManagementDelegate;
 
     @Autowired
-    RiskRegisterDelegateImpl riskRegisterDelegate;
+    RiskRegisterDelegate riskRegisterDelegate;
 
     @GetMapping("/pm")
     public String getSample() throws IOException, URISyntaxException {
@@ -32,6 +30,11 @@ public class ProjectManagementController {
     public List<RiskRegister> getRisk() {
 
         return riskRegisterDelegate.getAllRisks();
+    }
+
+    @PostMapping("/addRisk")
+    public RiskRegister createRisk(@Valid @RequestBody RiskRegister riskRegister) {
+        return riskRegisterDelegate.createRisk(riskRegister);
     }
 
 }

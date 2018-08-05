@@ -1,10 +1,7 @@
 package com.sra.projectmanagement.model;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sra.projectmanagement.utils.Identifiable;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
