@@ -1,77 +1,62 @@
 package com.sra.projectmanagement.utils;
 
-
 import org.hibernate.engine.spi.SharedSessionContractImplementor;
-
 import org.hibernate.id.IdentifierGenerator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.Serializable;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.Properties;
-import java.util.Random;
+import java.sql.*;
 
 public class StringSequenceIdentifier implements IdentifierGenerator {
+    private static final Logger LOG = LoggerFactory.getLogger("StringSequenceIdentifier");
+     @Override
+    public Serializable generate(SharedSessionContractImplementor si, Object o) {
 
- /*   private String DEFAULT_SEQUENCE_NAME = "hibernate_sequence";
-
-    @Override
-    public Serializable generate(SharedSessionContractImplementor session, Object obj) {
-        if (obj instanceof Identifiable) {
-            Identifiable identifiable = (Identifiable) obj;
-            Serializable id = identifiable.getId();
-            if (id != null) {
-                return id;
-            }
-        }
-        Serializable result = null;
-        Connection connection = null;
-        Statement statement = null;
-        ResultSet resultSet = null;
+        String riskID = "";
+         String prefix ="";
+        int defaultNumber = 1;
+        String digits = "";
+        String defaultPrefix = "AR-";
+        PreparedStatement pst = null;
+        Connection con = si.connection();
         try {
-            String prefix = "AR-";
-            connection = session.connection();
-            statement = connection.createStatement();
+           pst = con.prepareStatement("SELECT risk_id FROM "+"risk_register ");
+            ResultSet rs = pst.executeQuery();
+           if (rs != null) {
+               while(rs.next()) {
 
-            try {
-                statement.executeQuery("INSERT into "+DEFAULT_SEQUENCE_NAME+" ");
-                resultSet = statement.executeQuery("SELECT MAX(risk_no) FROM " +DEFAULT_SEQUENCE_NAME);
-            } catch (Exception e) {
-                ResultSet tables = connection.getMetaData().getTables(null, null, DEFAULT_SEQUENCE_NAME, null);
-                if (tables.next()) {
-                    System.out.println("Customer Table Exists !");
-                } else {
-                    // if sequence is not found then creating the sequence
-                    statement = connection.createStatement();
-                    statement.execute("CREATE TABLE " + DEFAULT_SEQUENCE_NAME + "(risk_no INT(4) AUTO_INCREMENT PRIMARY KEY)");
-                    System.out.println("Sequece Created successfully. ");
-                    resultSet = statement.executeQuery("SELECT MAX(risk_no) FROM " + DEFAULT_SEQUENCE_NAME);
+                   riskID = rs.getString("risk_id");
+                   LOG.info("Risk created in DB : {}", riskID);
 
-                }
-            }
-            if (resultSet.next()) {
-                int nextValue = resultSet.getInt(1);
-                String suffix = String.format("%05d", nextValue + 1);
-                result = prefix.concat(suffix);
-                System.out.println("Custom generated Sequence value : " + result);
+                   prefix = riskID.substring(0, 3);
+                   LOG.info("Risk created in DB : prefix", prefix);
+
+                   String str[] = riskID.split(prefix);
+                   LOG.info("Risk created in DB : str[]", riskID.split(prefix));
+
+                   digits = String.format("%06d", Integer.parseInt(str[1]) + 1);
+                   LOG.info("Risk created in DB : digits", digits);
+
+                   riskID = prefix.concat(digits);
+               }
+
+            } else {
+
+                digits = String.format("%06d", defaultNumber);
+
+               riskID = defaultPrefix.concat(digits);
+
             }
 
         } catch (SQLException e) {
+
             e.printStackTrace();
+
         }
 
-        return result;*/
-  //  }
+        return riskID;
 
-    public int generateRiskId() {
-        Random random = new Random();
-        return random.nextInt(10000);
     }
-    @Override
-    public Serializable generate(SharedSessionContractImplementor si, Object o) {
 
-        return "AR-" + this.generateRiskId();
-    }
 }
