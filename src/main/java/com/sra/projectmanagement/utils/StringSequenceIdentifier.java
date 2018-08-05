@@ -11,10 +11,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
+import java.util.Random;
 
 public class StringSequenceIdentifier implements IdentifierGenerator {
 
-    private String DEFAULT_SEQUENCE_NAME = "hibernate_sequence";
+ /*   private String DEFAULT_SEQUENCE_NAME = "hibernate_sequence";
 
     @Override
     public Serializable generate(SharedSessionContractImplementor session, Object obj) {
@@ -35,6 +36,7 @@ public class StringSequenceIdentifier implements IdentifierGenerator {
             statement = connection.createStatement();
 
             try {
+                statement.executeQuery("INSERT into "+DEFAULT_SEQUENCE_NAME+" ");
                 resultSet = statement.executeQuery("SELECT MAX(risk_no) FROM " +DEFAULT_SEQUENCE_NAME);
             } catch (Exception e) {
                 ResultSet tables = connection.getMetaData().getTables(null, null, DEFAULT_SEQUENCE_NAME, null);
@@ -49,17 +51,27 @@ public class StringSequenceIdentifier implements IdentifierGenerator {
 
                 }
             }
-            if (!resultSet.next()) return result;
-            int nextValue = resultSet.getInt(1);
-            String suffix = String.format("%05d", nextValue + 1);
-            result = prefix.concat(suffix);
-            System.out.println("Custom generated Sequence value : "+result);
-
+            if (resultSet.next()) {
+                int nextValue = resultSet.getInt(1);
+                String suffix = String.format("%05d", nextValue + 1);
+                result = prefix.concat(suffix);
+                System.out.println("Custom generated Sequence value : " + result);
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return result;
+        return result;*/
+  //  }
+
+    public int generateRiskId() {
+        Random random = new Random();
+        return random.nextInt(10000);
+    }
+    @Override
+    public Serializable generate(SharedSessionContractImplementor si, Object o) {
+
+        return "AR-" + this.generateRiskId();
     }
 }

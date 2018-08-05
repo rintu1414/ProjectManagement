@@ -1,4 +1,4 @@
-{
+[
   {
     'ID': '001',
     'Name': 'Eurasian Collared-Dove',
@@ -17,4 +17,4 @@
     'Type': 'Hawk',
     'Status': 'Accipiter cooperii'
   }
-}
+]

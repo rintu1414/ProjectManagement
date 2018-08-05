@@ -30,6 +30,7 @@ public class ProjectManagementController {
 
     @GetMapping("/risk")
     public List<RiskRegister> getRisk() {
+
         return riskRegisterDelegate.getAllRisks();
     }
 
