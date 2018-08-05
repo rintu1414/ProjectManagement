@@ -14,39 +14,38 @@ public class StringSequenceIdentifier implements IdentifierGenerator {
     public Serializable generate(SharedSessionContractImplementor si, Object o) {
 
         String riskID = "";
-         String prefix ="";
         int defaultNumber = 1;
-        String digits = "";
         String defaultPrefix = "AR-";
         PreparedStatement pst = null;
         Connection con = si.connection();
         try {
            pst = con.prepareStatement("SELECT risk_id FROM "+"risk_register ");
             ResultSet rs = pst.executeQuery();
-           if (rs != null) {
-               while(rs.next()) {
+           if (rs != null && rs.next()) {
+               while(rs.last()) {
 
                    riskID = rs.getString("risk_id");
                    LOG.info("Risk created in DB : {}", riskID);
 
-                   prefix = riskID.substring(0, 3);
+                   String prefix =prefix = riskID.substring(0, 3);
                    LOG.info("Risk created in DB : prefix", prefix);
 
                    String str[] = riskID.split(prefix);
                    LOG.info("Risk created in DB : str[]", riskID.split(prefix));
 
-                   digits = String.format("%06d", Integer.parseInt(str[1]) + 1);
+                   String digits = digits = String.format("%06d", Integer.parseInt(str[1]) + 1);
                    LOG.info("Risk created in DB : digits", digits);
 
                    riskID = prefix.concat(digits);
+                   break;
                }
 
             } else {
 
-                digits = String.format("%06d", defaultNumber);
+               String digits = String.format("%06d", defaultNumber);
 
                riskID = defaultPrefix.concat(digits);
-
+               LOG.info("Risk created in DB : else", riskID);
             }
 
         } catch (SQLException e) {

@@ -12,9 +12,7 @@ import java.util.Date;
 @Entity
 @Table(name = "RISK_REGISTER")
 @EntityListeners(AuditingEntityListener.class)
-@JsonIgnoreProperties(value = {"createdAt", "updatedAt"},
-        allowGetters = true)
-public class RiskRegister implements Serializable, Identifiable<String> {
+public class RiskRegister implements Serializable, Identifiable<String>{
 
     @Id
     @GeneratedValue(
@@ -25,7 +23,7 @@ public class RiskRegister implements Serializable, Identifiable<String> {
             strategy = "com.sra.projectmanagement.utils.StringSequenceIdentifier"
     )
 
-    @Column(name = "risk_id")
+    @Column(name = "risk_id",nullable = false)
     private String id;
 
 
@@ -70,130 +68,144 @@ public class RiskRegister implements Serializable, Identifiable<String> {
     public RiskRegister() {
     }
 
-    public RiskRegister(String id, Date dateIndented, String riskCategory) {
-        this.id = id;
-        this.dateIndented = dateIndented;
-        this.riskCategory = riskCategory;
-    }
-/*    public RiskRegister(String id, Date dateIndented, String riskCategory, String riskDescription, String riskOwner, String impact, String contributingFactor, String currentControl, String currentControlEvaluation, String likelihood, String severity, int rank, String rankDescription, String response, String responsePlan, String actualAction, Date dueDate, String status) {
-        this.id = id;
-        this.dateIndented = dateIndented;
-        this.riskCategory = riskCategory;
-        this.riskDescription = riskDescription;
-        this.riskOwner = riskOwner;
-        this.impact = impact;
-        this.contributingFactor = contributingFactor;
-        this.currentControl = currentControl;
-        this.currentControlEvaluation = currentControlEvaluation;
-        this.likelihood = likelihood;
-        this.severity = severity;
-        this.rank = rank;
-        this.rankDescription = rankDescription;
-        this.response = response;
-        this.responsePlan = responsePlan;
-        this.actualAction = actualAction;
-        this.dueDate = dueDate;
-        this.status = status;
-    }*/
-
     public Date getDateIndented() {
         return dateIndented;
+    }
+
+    public void setDateIndented(Date dateIndented) {
+        this.dateIndented = dateIndented;
     }
 
     public String getRiskCategory() {
         return riskCategory;
     }
 
+    public void setRiskCategory(String riskCategory) {
+        this.riskCategory = riskCategory;
+    }
+
     public String getRiskDescription() {
         return riskDescription;
+    }
+
+    public void setRiskDescription(String riskDescription) {
+        this.riskDescription = riskDescription;
     }
 
     public String getRiskOwner() {
         return riskOwner;
     }
 
+    public void setRiskOwner(String riskOwner) {
+        this.riskOwner = riskOwner;
+    }
+
     public String getImpact() {
         return impact;
+    }
+
+    public void setImpact(String impact) {
+        this.impact = impact;
     }
 
     public String getContributingFactor() {
         return contributingFactor;
     }
 
+    public void setContributingFactor(String contributingFactor) {
+        this.contributingFactor = contributingFactor;
+    }
+
     public String getCurrentControl() {
         return currentControl;
+    }
+
+    public void setCurrentControl(String currentControl) {
+        this.currentControl = currentControl;
     }
 
     public String getCurrentControlEvaluation() {
         return currentControlEvaluation;
     }
 
+    public void setCurrentControlEvaluation(String currentControlEvaluation) {
+        this.currentControlEvaluation = currentControlEvaluation;
+    }
+
     public String getLikelihood() {
         return likelihood;
+    }
+
+    public void setLikelihood(String likelihood) {
+        this.likelihood = likelihood;
     }
 
     public String getSeverity() {
         return severity;
     }
 
+    public void setSeverity(String severity) {
+        this.severity = severity;
+    }
+
     public int getRank() {
         return rank;
+    }
+
+    public void setRank(int rank) {
+        this.rank = rank;
     }
 
     public String getRankDescription() {
         return rankDescription;
     }
 
+    public void setRankDescription(String rankDescription) {
+        this.rankDescription = rankDescription;
+    }
+
     public String getResponse() {
         return response;
+    }
+
+    public void setResponse(String response) {
+        this.response = response;
     }
 
     public String getResponsePlan() {
         return responsePlan;
     }
 
+    public void setResponsePlan(String responsePlan) {
+        this.responsePlan = responsePlan;
+    }
+
     public String getActualAction() {
         return actualAction;
+    }
+
+    public void setActualAction(String actualAction) {
+        this.actualAction = actualAction;
     }
 
     public Date getDueDate() {
         return dueDate;
     }
 
-
+    public void setDueDate(Date dueDate) {
+        this.dueDate = dueDate;
+    }
 
     public String getStatus() {
         return status;
     }
 
-    @Override
-    public String toString() {
-        return "RiskRegister{" +
-                "id='" + id + '\'' +
-                ", dateIndented=" + dateIndented +
-                ", riskCategory='" + riskCategory + '\'' +
-                ", riskDescription='" + riskDescription + '\'' +
-                ", riskOwner='" + riskOwner + '\'' +
-                ", impact='" + impact + '\'' +
-                ", contributingFactor='" + contributingFactor + '\'' +
-                ", currentControl='" + currentControl + '\'' +
-                ", currentControlEvaluation='" + currentControlEvaluation + '\'' +
-                ", likelihood='" + likelihood + '\'' +
-                ", severity='" + severity + '\'' +
-                ", rank=" + rank +
-                ", rankDescription='" + rankDescription + '\'' +
-                ", response='" + response + '\'' +
-                ", responsePlan='" + responsePlan + '\'' +
-                ", actualAction='" + actualAction + '\'' +
-                ", dueDate=" + dueDate +
-                ", status='" + status + '\'' +
-                '}';
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     @Override
     public String getId() {
         return id;
     }
-
-
 }
