@@ -33,8 +33,15 @@ public class ProjectManagementController {
     }
 
     @PostMapping("/addRisk")
-    public RiskRegister createRisk(@Valid @RequestBody RiskRegister riskRegister) {
-        return riskRegisterDelegate.createRisk(riskRegister);
+    public String createRisk(@Valid @RequestBody RiskRegister[] riskRegister) {
+       // return riskRegisterDelegate.createRisk(riskRegister);
+        int i=0;
+        for(RiskRegister risk: riskRegister) {
+            riskRegisterDelegate.createRisk(risk);
+            i++;
+        }
+        return i+" rows succesfully updated";
+
     }
 
 }
