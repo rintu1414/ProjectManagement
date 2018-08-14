@@ -1,4 +1,4 @@
-package com.sra.projectmanagement.Controller;
+package com.sra.projectmanagement.controller;
 
 
 import com.sra.projectmanagement.logic.ProjectManagementDelegate;

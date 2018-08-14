@@ -7,14 +7,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
+
+import javax.annotation.PostConstruct;
+import java.util.TimeZone;
 
 @SpringBootApplication
+@EntityScan(basePackageClasses = {
+		ProjectmanagementApplication.class,
+		Jsr310JpaConverters.class
+})
 public class ProjectmanagementApplication implements CommandLineRunner {
 
 	private static final Logger LOG = LoggerFactory.getLogger("JCG");
 
 	@Autowired
 	private RiskRegisterDelegate riskRegisterDelegate;
+
+	@PostConstruct
+	void init() {
+		TimeZone.getDefault();
+	}
 
 	public static void main(String[] args) {
 
