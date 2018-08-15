@@ -81,10 +81,16 @@ public class AuthController {
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
-        Role userRole = roleRepository.findByName(RoleName.ROLE_USER)
-                .orElseThrow(() -> new AppException("User Role not set."));
+        // RoleName.ROLE_USER
+        for(RoleName roleName : RoleName.values()){
+            if(roleName.name().equals(signUpRequest.getRoles())){
+                Role userRole = roleRepository.findByName(roleName)
+                        .orElseThrow(() -> new AppException("User Role not set."));
 
-        user.setRoles(Collections.singleton(userRole));
+                user.setRoles(Collections.singleton(userRole));
+            }
+        }
+
 
         User result = userRepository.save(user);
 

@@ -1,10 +1,8 @@
 package com.sra.projectmanagement;
 import com.sra.projectmanagement.logic.RiskRegisterDelegate;
-import com.sra.projectmanagement.model.RiskRegister;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
@@ -18,7 +16,7 @@ import java.util.TimeZone;
 		ProjectmanagementApplication.class,
 		Jsr310JpaConverters.class
 })
-public class ProjectmanagementApplication implements CommandLineRunner {
+public class ProjectmanagementApplication {
 
 	private static final Logger LOG = LoggerFactory.getLogger("JCG");
 
@@ -35,11 +33,11 @@ public class ProjectmanagementApplication implements CommandLineRunner {
 		SpringApplication.run(ProjectmanagementApplication.class, args);
 	}
 
-	@Override
+	/*@Override
 	public void run(String... args) throws Exception {
 	RiskRegister risk = riskRegisterDelegate.createRisk(new RiskRegister());
 		LOG.info("Risk created in DB : {}", risk);
 
 
-	}
+	}*/
 }
