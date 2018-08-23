@@ -13,6 +13,7 @@ import java.net.URISyntaxException;
 import java.util.List;
 
 @RestController
+@RequestMapping("/api/pmi")
 public class ProjectManagementController {
 
     @Autowired
