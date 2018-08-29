@@ -23,54 +23,79 @@ public class RiskRegister implements Serializable, Identifiable<String>{
     @Column(name = "risk_id",nullable = false)
     private String id;
 
+    private String sourceReference;
+
+    private String crossReference;
 
     @Temporal(TemporalType.DATE)
-    private Date dateIndented;
+    private Date date;
 
     private String riskCategory;
 
     private String riskDescription;
 
-    private String riskOwner;
+    private String pic;
 
     private String impact;
-
-    private String contributingFactor;
-
-    private String currentControl;
-
-    private String currentControlEvaluation;
 
     private String likelihood;
 
     private String severity;
 
-    private int rank;
-
-    private String rankDescription;
-
     private String response;
 
     private String responsePlan;
 
-    private String actualAction;
-
-
     @Temporal(TemporalType.DATE)
-    private Date dueDate;
+    private Date targetDate;
+
+    private String addToDo;
 
     private String status;
+
+    private String convertToIssue;
+
+    private double cost;
+
+    private String currency;
+
+    private String schedule;
+
+    private String duration;
+
+    private String impactDetails;
+
+    private int rank;
+
+    private String derivative;
+
 
 
     public RiskRegister() {
     }
 
-    public Date getDateIndented() {
-        return dateIndented;
+    public String getSourceReference() {
+        return sourceReference;
     }
 
-    public void setDateIndented(Date dateIndented) {
-        this.dateIndented = dateIndented;
+    public void setSourceReference(String sourceReference) {
+        this.sourceReference = sourceReference;
+    }
+
+    public String getCrossReference() {
+        return crossReference;
+    }
+
+    public void setCrossReference(String crossReference) {
+        this.crossReference = crossReference;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public String getRiskCategory() {
@@ -89,12 +114,12 @@ public class RiskRegister implements Serializable, Identifiable<String>{
         this.riskDescription = riskDescription;
     }
 
-    public String getRiskOwner() {
-        return riskOwner;
+    public String getPic() {
+        return pic;
     }
 
-    public void setRiskOwner(String riskOwner) {
-        this.riskOwner = riskOwner;
+    public void setPic(String pic) {
+        this.pic = pic;
     }
 
     public String getImpact() {
@@ -103,30 +128,6 @@ public class RiskRegister implements Serializable, Identifiable<String>{
 
     public void setImpact(String impact) {
         this.impact = impact;
-    }
-
-    public String getContributingFactor() {
-        return contributingFactor;
-    }
-
-    public void setContributingFactor(String contributingFactor) {
-        this.contributingFactor = contributingFactor;
-    }
-
-    public String getCurrentControl() {
-        return currentControl;
-    }
-
-    public void setCurrentControl(String currentControl) {
-        this.currentControl = currentControl;
-    }
-
-    public String getCurrentControlEvaluation() {
-        return currentControlEvaluation;
-    }
-
-    public void setCurrentControlEvaluation(String currentControlEvaluation) {
-        this.currentControlEvaluation = currentControlEvaluation;
     }
 
     public String getLikelihood() {
@@ -145,22 +146,6 @@ public class RiskRegister implements Serializable, Identifiable<String>{
         this.severity = severity;
     }
 
-    public int getRank() {
-        return rank;
-    }
-
-    public void setRank(int rank) {
-        this.rank = rank;
-    }
-
-    public String getRankDescription() {
-        return rankDescription;
-    }
-
-    public void setRankDescription(String rankDescription) {
-        this.rankDescription = rankDescription;
-    }
-
     public String getResponse() {
         return response;
     }
@@ -177,20 +162,20 @@ public class RiskRegister implements Serializable, Identifiable<String>{
         this.responsePlan = responsePlan;
     }
 
-    public String getActualAction() {
-        return actualAction;
+    public Date getTargetDate() {
+        return targetDate;
     }
 
-    public void setActualAction(String actualAction) {
-        this.actualAction = actualAction;
+    public void setTargetDate(Date targetDate) {
+        this.targetDate = targetDate;
     }
 
-    public Date getDueDate() {
-        return dueDate;
+    public String getAddToDo() {
+        return addToDo;
     }
 
-    public void setDueDate(Date dueDate) {
-        this.dueDate = dueDate;
+    public void setAddToDo(String addToDo) {
+        this.addToDo = addToDo;
     }
 
     public String getStatus() {
@@ -199,6 +184,70 @@ public class RiskRegister implements Serializable, Identifiable<String>{
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getConvertToIssue() {
+        return convertToIssue;
+    }
+
+    public void setConvertToIssue(String convertToIssue) {
+        this.convertToIssue = convertToIssue;
+    }
+
+    public double getCost() {
+        return cost;
+    }
+
+    public void setCost(double cost) {
+        this.cost = cost;
+    }
+
+    public String getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(String currency) {
+        this.currency = currency;
+    }
+
+    public String getSchedule() {
+        return schedule;
+    }
+
+    public void setSchedule(String schedule) {
+        this.schedule = schedule;
+    }
+
+    public String getDuration() {
+        return duration;
+    }
+
+    public void setDuration(String duration) {
+        this.duration = duration;
+    }
+
+    public String getImpactDetails() {
+        return impactDetails;
+    }
+
+    public void setImpactDetails(String impactDetails) {
+        this.impactDetails = impactDetails;
+    }
+
+    public int getRank() {
+        return rank;
+    }
+
+    public void setRank(int rank) {
+        this.rank = rank;
+    }
+
+    public String getDerivative() {
+        return derivative;
+    }
+
+    public void setDerivative(String derivative) {
+        this.derivative = derivative;
     }
 
     @Override
