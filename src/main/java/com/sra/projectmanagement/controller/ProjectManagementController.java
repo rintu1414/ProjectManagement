@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -38,6 +39,14 @@ public class ProjectManagementController {
        // return riskRegisterDelegate.createRisk(riskRegister);
         int i=0;
         for(RiskRegister risk: riskRegister) {
+            if(risk.getStatus() == "Open"){
+                risk.setConvertToIssue("");
+                risk.setCost(0);
+                risk.setCurrency("");
+                risk.setSchedule("");
+                risk.setDuration("");
+                risk.setImpactDetails("");
+            }
             riskRegisterDelegate.createRisk(risk);
             i++;
         }
