@@ -11,7 +11,9 @@ import javax.validation.Valid;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/pmi")
@@ -36,22 +38,6 @@ public class ProjectManagementController {
 
     @PostMapping("/addRisk")
     public String createRisk(@Valid @RequestBody RiskRegister[] riskRegister) {
-       // return riskRegisterDelegate.createRisk(riskRegister);
-        int i=0;
-        for(RiskRegister risk: riskRegister) {
-            if(risk.getStatus() == "Open"){
-                risk.setConvertToIssue("");
-                risk.setCost(0);
-                risk.setCurrency("");
-                risk.setSchedule("");
-                risk.setDuration("");
-                risk.setImpactDetails("");
-            }
-            riskRegisterDelegate.createRisk(risk);
-            i++;
-        }
-        return i+" rows succesfully updated";
+       return riskRegisterDelegate.createRisk(riskRegister);
 
-    }
-
-}
+}}

@@ -7,7 +7,7 @@ import java.util.List;
 public interface RiskRegisterDelegate {
 
     List getAllRisks();
-    RiskRegister createRisk(RiskRegister riskRegister);
+    String createRisk(RiskRegister[] riskRegister);
 
 
 }

@@ -65,7 +65,7 @@ public class RiskRegister implements Serializable, Identifiable<String>{
 
     private String impactDetails;
 
-    private int rank;
+    private String rank;
 
     private String derivative;
 
@@ -234,11 +234,11 @@ public class RiskRegister implements Serializable, Identifiable<String>{
         this.impactDetails = impactDetails;
     }
 
-    public int getRank() {
+    public String getRank() {
         return rank;
     }
 
-    public void setRank(int rank) {
+    public void setRank(String rank) {
         this.rank = rank;
     }
 
