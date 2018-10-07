@@ -1,15 +1,33 @@
 package com.sra.projectmanagement.utils;
 
+import java.util.Properties;
+import org.hibernate.internal.util.config.ConfigurationHelper;
+import org.hibernate.MappingException;
 import org.hibernate.engine.spi.SharedSessionContractImplementor;
+import org.hibernate.id.Configurable;
 import org.hibernate.id.IdentifierGenerator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
+import org.hibernate.service.ServiceRegistry;
+import org.hibernate.type.Type;
 import java.io.Serializable;
 import java.sql.*;
 
-public class StringSequenceIdentifier implements IdentifierGenerator {
+public class StringSequenceIdentifier implements IdentifierGenerator, Configurable {
     private static final Logger LOG = LoggerFactory.getLogger("StringSequenceIdentifier");
+    public static final String SEQUENCE_PREFIX = "sequence_prefix";
+    private String sequencePrefix;
+    @Override
+    public void configure(
+            Type type, Properties params, ServiceRegistry serviceRegistry)
+            throws MappingException {
+
+        sequencePrefix = ConfigurationHelper.getString(
+                SEQUENCE_PREFIX,
+                params);
+
+    }
+
      @Override
     public Serializable generate(SharedSessionContractImplementor si, Object o) {
 
@@ -44,7 +62,7 @@ public class StringSequenceIdentifier implements IdentifierGenerator {
 
                String digits = String.format("%06d", defaultNumber);
 
-               riskID = defaultPrefix.concat(digits);
+               riskID = sequencePrefix.concat(digits);
                LOG.info("Risk created in DB : else", riskID);
             }
 

@@ -17,7 +17,11 @@ public class RiskRegister implements Serializable, Identifiable<String>{
             strategy = GenerationType.SEQUENCE)
     @GenericGenerator(
             name = "assigned-sequence",
-            strategy = "com.sra.projectmanagement.utils.StringSequenceIdentifier"
+            strategy = "com.sra.projectmanagement.utils.StringSequenceIdentifier",
+            parameters = {
+                    @org.hibernate.annotations.Parameter(
+                            name = "sequence_prefix", value = "RI-"),
+            }
     )
 
     @Column(name = "risk_id",nullable = false)
