@@ -16,8 +16,16 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
+
+
 @RequestMapping("/api/pmi")
 public class ProjectManagementController {
+
+
+    @GetMapping("/test")
+    public String test() {
+        return "hi";
+    }
 
     @Autowired
     ProjectManagementDelegate projectManagementDelegate;
